@@ -100,14 +100,11 @@ public class MemberController {
 
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
 
-		// 네이버에서 불러온값 형변환 해야함
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);
 		JSONObject jsonObj = (JSONObject) obj;
 
 		JSONObject responseOBJ = (JSONObject) jsonObj.get("response");
-		// response의 nickname값 파싱
-//		String nickname = (String)responseOBJ.get("name");
 
 		// 자동 회원가입 되게 하기.
 		Map<String, Object> map = new HashMap<>();
@@ -117,9 +114,6 @@ public class MemberController {
 		map.put("memberId", (String) responseOBJ.get("email"));
 		
 		Member member = memberService.selectOneMember((String)responseOBJ.get("email"));
-		
-		log.debug("테스트 = {}", (String)responseOBJ.get("gender"));
-		log.debug("member = {}", member);
 		if( member == null || member.getMemberId() == null) {
 			
 			log.debug("naverMap = {}", map);
@@ -129,12 +123,9 @@ public class MemberController {
 			
 			log.debug("map = {}", map);
 			session.setAttribute("loginMember", member);
-//			model.addAttribute("loginMember", member);
 			return "redirect:/";
 			
-		}
-	
-
+		}	
 
 	}
 
