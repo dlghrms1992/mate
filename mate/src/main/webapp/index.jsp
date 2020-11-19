@@ -166,7 +166,7 @@ $(function(){
 	<div class="blur-div second-div best-div"></div>
 	<div class="blur-div third-div best-div"></div>
 </div>
-​
+​<p><p></p></p>
 ​
 <p id="best-p"><────────── BEST 5 ───────────</p>
 <br />
