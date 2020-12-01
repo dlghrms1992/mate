@@ -92,8 +92,6 @@ public class MemberController {
 	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException, java.text.ParseException {
-		log.debug("callback 호출 확인");
-
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAcessToken(session, code, state);
 		log.debug("oauthToken = {}", oauthToken);

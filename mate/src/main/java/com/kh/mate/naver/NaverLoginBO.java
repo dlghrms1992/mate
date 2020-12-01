@@ -20,7 +20,7 @@ public class NaverLoginBO {
 	private final static String REDIRECT_URI = "http://mate.matetoy.kro.kr/mate/callback.do";
 	private final static String SESSION_STATE = "oauth_state";
 	
-	 /* 프로필 조회 API URL => 이건 아직 모르겠음*/
+	
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 
     public String getAuthorizationUrl(HttpSession session) {
