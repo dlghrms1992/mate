@@ -221,28 +221,28 @@
   // 비밀글 설정 했을 시 본인과 관리자를 구분해주는 유효성 검사
   $(function() {
 		$("tr[data-no]")
-				.click(
-						function() {
-							var csNo = $(this).attr("data-no");
-							var memberId = $(this).find(".csMemberId").text();
-							var secret = $(this).find(".secret").text();
-							var loginMember = '${ loginMember.memberId}';
+			.click(
+				function() {
+					var csNo = $(this).attr("data-no");
+					var memberId = $(this).find(".csMemberId").text();
+					var secret = $(this).find(".secret").text();
+					var loginMember = '${ loginMember.memberId}';
 
-							console.log(secret);
-							console.log(memberId);
-							console.log(loginMember);
+					console.log(secret);
+					console.log(memberId);
+					console.log(loginMember);
 
-							if (secret == '1' && loginMember != 'admin'
-									&& loginMember != memberId) {
+					if (secret == '1' && loginMember != 'admin'
+							&& loginMember != memberId) {
 
-								alert("비밀글 입니다. 본인만 확인 할 수 있다.");
-								return;
-							}
+						alert("비밀글 입니다. 본인만 확인 할 수 있다.");
+						return;
+					}
 
-							location.href = "${ pageContext.request.contextPath }/cs/csDetail.do?csNo="
-									+ csNo;
+					location.href = "${ pageContext.request.contextPath }/cs/csDetail.do?csNo="
+							+ csNo;
 
-						});
+				});
 	});
   ```
 ### 4. 게시판(ERP)
