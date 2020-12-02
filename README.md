@@ -107,7 +107,7 @@
    * 기존의 랜덤함수를 선언하고 핸드폰 번호를 입력하면 해당 번호로 랜덤 숫자 6개를 리턴해주게 된다.
    * 다시 모달창을 띠워 리턴 받은 6개의 숫자를 상대방의 문자의 내용의 숫자와 비교한다.
    * 결과 값이 일치하면 1로 일치하지 않으면 0으로 리턴하게 된다.
-   ```javascscpit
+   ```javascript
    // 문자인증 검사
     $(function() {
        $("#phone-send").click(function(){
@@ -142,7 +142,7 @@
     
    ```java
    // 요청 번호로 문자 전송
-     	@ResponseBody
+     @ResponseBody
       @PostMapping("/member/phoneSend.do")
        public String PhoneSend(@RequestParam("receiver") String phone) {
           log.debug("phone = {}", phone);
@@ -364,5 +364,6 @@
 ## 이 외 구현 기능
   * 오프라인 지점 위치보기
   * 상품 검색시 요청 키워드 필터링
-  * 상품 추가
+  * 상품 추가 및 삭제
   * 상품 구매 및 장바구니 추가
+  * 제조사 등록 및 수정 삭
