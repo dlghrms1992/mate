@@ -62,7 +62,7 @@
   * 회원 가입을 하고 일반 로그인을 하면 되는 것이고, SNS 로그인은 회원 가입 이력이 없다면 각 SNS기능에서 로그인 했을 시 
   * 회원 가입 toggle-tab으로 아이디, 비밀번호, 이름,성별 등을 제외하고, "핸드폰 인증"만 하면 가입이 된다.
   * 가입을 하고 다음에 로그인을 했을 시 연동되어있는 계정으로 로그인이 된다.
-  ```
+  ```java
      // naverLogin 성공시
    @RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
