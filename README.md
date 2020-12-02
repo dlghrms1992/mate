@@ -57,6 +57,60 @@
 -------------------------------------------------------------------------------------
 ## 주요 기능(작성자 본인이 구현 기능 이주로 작성되었습니다.) 
 
+### 1. 로그인 기능 (로그인 API[카카오,네이버])
+  * 일반 로그인과 SNS 로그인을 할 수 있는 두 가지 방법이있다. 일반 로그인은 회원가입 toggle-tab에서 문자인증을 하면 
+  * 회원 가입을 하고 일반 로그인을 하면 되는 것이고, SNS 로그인은 회원 가입 이력이 없다면 각 SNS기능에서 로그인 했을 시 
+  * 회원 가입 toggle-tab으로 아이디, 비밀번호, 이름,성별 등을 제외하고, "핸드폰 인증"만 하면 가입이 된다.
+  * 가입을 하고 다음에 로그인을 했을 시 연동되어있는 계정으로 로그인이 된다.
+  ```
+     // naverLogin 성공시
+   @RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+   public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+     throws IOException, ParseException, java.text.ParseException {
+          OAuth2AccessToken oauthToken;
+          oauthToken = naverLoginBO.getAcessToken(session, code, state);
+          log.debug("oauthToken = {}", oauthToken);
+
+          apiResult = naverLoginBO.getUserProfile(oauthToken);
+
+          JSONParser parser = new JSONParser();
+          Object obj = parser.parse(apiResult);
+          JSONObject jsonObj = (JSONObject) obj;
+
+          JSONObject responseOBJ = (JSONObject) jsonObj.get("response");
+
+          // 자동 회원가입 되게 하기.
+          Map<String, Object> map = new HashMap<>();
+          map.put("memberPWD", (String) responseOBJ.get("id"));
+          map.put("memberName", (String) responseOBJ.get("name"));
+          map.put("gender", (String) responseOBJ.get("gender"));
+          map.put("memberId", (String) responseOBJ.get("email"));
+
+          Member member = memberService.selectOneMember((String)responseOBJ.get("email"));
+          // 요청 email 회원 유효성 
+          if( member == null || member.getMemberId() == null) {
+
+           log.debug("naverMap = {}", map);
+           model.addAttribute("snsMember", map);
+           return "member/login";
+          }else {
+
+           log.debug("map = {}", map);
+           session.setAttribute("loginMember", member);
+           return "redirect:/";
+
+          }	
+
+   }
+
+  ```
+
+### 2. 문자 인증 기능(Coolms API)
+
+### 3. 게시판(고객센터)
+
+### 4. 게시판(ERP)
+
 
 
 
