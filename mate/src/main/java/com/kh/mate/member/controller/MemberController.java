@@ -204,7 +204,6 @@ public class MemberController {
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(map);
 		} catch (CoolsmsException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
